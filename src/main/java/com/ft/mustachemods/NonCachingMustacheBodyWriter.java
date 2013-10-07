@@ -1,16 +1,8 @@
 package com.ft.mustachemods;
 
-import static com.codahale.metrics.MetricRegistry.name;
+import com.yammer.dropwizard.views.View;
+import com.yammer.dropwizard.views.ViewRenderException;
 
-import javax.swing.Renderer;
-
-import com.codahale.dropwizard.views.View;
-import com.codahale.dropwizard.views.ViewRenderException;
-import com.codahale.dropwizard.views.ViewRenderer;
-import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.Timer;
-import com.google.common.collect.ImmutableList;
-import com.sun.jersey.spi.service.ServiceFinder;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -42,12 +34,10 @@ public class NonCachingMustacheBodyWriter implements MessageBodyWriter<View> {
     @SuppressWarnings("UnusedDeclaration")
     private HttpHeaders headers;
 
-    private final MetricRegistry metricRegistry;
 
     private final NonCachingMustacheViewRenderer renderer;
     
-    public NonCachingMustacheBodyWriter(MetricRegistry metricRegistry) {
-        this.metricRegistry = metricRegistry;
+    public NonCachingMustacheBodyWriter() {
         this.renderer = new NonCachingMustacheViewRenderer();
     }
 
@@ -73,7 +63,6 @@ public class NonCachingMustacheBodyWriter implements MessageBodyWriter<View> {
                         MediaType mediaType,
                         MultivaluedMap<String, Object> httpHeaders,
                         OutputStream entityStream) throws IOException, WebApplicationException {
-        final Timer.Context context = metricRegistry.timer(name(t.getClass(), "rendering")).time();
         try {
             if (renderer.isRenderable(t)) {
                 renderer.render(t, detectLocale(headers), entityStream);
@@ -87,8 +76,6 @@ public class NonCachingMustacheBodyWriter implements MessageBodyWriter<View> {
                                                       .type(MediaType.TEXT_HTML_TYPE)
                                                       .entity(msg)
                                                       .build());
-        } finally {
-            context.stop();
         }
     }
 

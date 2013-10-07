@@ -1,8 +1,8 @@
 package com.ft.mustachemods;
 
-import com.codahale.dropwizard.Bundle;
-import com.codahale.dropwizard.setup.Bootstrap;
-import com.codahale.dropwizard.setup.Environment;
+import com.yammer.dropwizard.Bundle;
+import com.yammer.dropwizard.config.Bootstrap;
+import com.yammer.dropwizard.config.Environment;
 
 public class NonCachineMustacheViewBundle implements Bundle {
 
@@ -12,7 +12,7 @@ public class NonCachineMustacheViewBundle implements Bundle {
 
 	@Override
 	public void run(Environment environment) {
-		environment.jersey().register(
-				new NonCachingMustacheBodyWriter(environment.metrics()));
+		environment.addResource(
+                new NonCachingMustacheBodyWriter());
 	}
 }
