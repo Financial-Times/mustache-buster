@@ -36,7 +36,11 @@ public class NonCachingMustacheViewRenderer implements ViewRenderer {
 
             final Charset charset = view.getCharset().or(Charsets.UTF_8);
             OutputStreamWriter writer = new OutputStreamWriter(output, charset);
-            template.execute(writer, view);
+            try{
+                template.execute(writer, view);
+            }finally {
+                writer.close();
+            }
 
         } catch (Exception e) {
             throw new FileNotFoundException("Template " + view.getTemplateName() + " not found.");
