@@ -4,7 +4,7 @@ import com.yammer.dropwizard.Bundle;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
 
-public class NonCachineMustacheViewBundle implements Bundle {
+public class NonCachingMustacheViewBundle implements Bundle {
 
 	@Override
 	public void initialize(Bootstrap<?> bootstrap) {
