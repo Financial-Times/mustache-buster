@@ -12,7 +12,7 @@
 	</prerequisites>
 	<groupId>com.ft.ws.lib</groupId>
 	<artifactId>ft-mustache-buster</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<name>FT moustache buster</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
