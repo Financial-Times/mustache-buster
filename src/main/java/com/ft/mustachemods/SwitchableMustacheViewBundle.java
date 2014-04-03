@@ -1,9 +1,10 @@
 package com.ft.mustachemods;
 
-import com.yammer.dropwizard.Bundle;
-import com.yammer.dropwizard.config.Bootstrap;
-import com.yammer.dropwizard.config.Environment;
-import com.yammer.dropwizard.views.ViewBundle;
+import com.ft.mustachemods.bugfix.MustacheViewFixBundle;
+import com.ft.mustachemods.noncache.NonCachingMustacheViewBundle;
+import io.dropwizard.Bundle;
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
 
 public class SwitchableMustacheViewBundle implements Bundle {
 
@@ -17,7 +18,7 @@ public class SwitchableMustacheViewBundle implements Bundle {
         if(mode != null && mode.equalsIgnoreCase("dev")){
             bootstrap.addBundle(new NonCachingMustacheViewBundle());
         }else{
-            bootstrap.addBundle(new ViewBundle());
+            bootstrap.addBundle(new MustacheViewFixBundle());
         }
     }
 

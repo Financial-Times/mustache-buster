@@ -1,14 +1,22 @@
-package com.ft.mustachemods;
+package com.ft.mustachemods.noncache;
+
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheException;
 import com.google.common.base.Charsets;
-import com.yammer.dropwizard.views.View;
-import com.yammer.dropwizard.views.ViewRenderer;
+import io.dropwizard.views.View;
+import io.dropwizard.views.ViewRenderer;
 
 import javax.ws.rs.WebApplicationException;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.nio.charset.Charset;
 import java.util.Locale;
 
@@ -26,7 +34,7 @@ public class NonCachingMustacheViewRenderer implements ViewRenderer {
             final Mustache template = new DefaultMustacheFactory() {
                 @Override
                 public Reader getReader(String resourceName) {
-                    final InputStream is = getClass().getResourceAsStream(resourceName);
+                    final InputStream is = getClass().getResourceAsStream(resourceName.replace("\\", "/"));
                     if (is == null) {
                         throw new MustacheException("Template " + resourceName + " not found");
                     }

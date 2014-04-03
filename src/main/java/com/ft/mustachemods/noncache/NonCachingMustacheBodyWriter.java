@@ -1,7 +1,7 @@
-package com.ft.mustachemods;
+package com.ft.mustachemods.noncache;
 
-import com.yammer.dropwizard.views.View;
-import com.yammer.dropwizard.views.ViewRenderException;
+import io.dropwizard.views.View;
+import io.dropwizard.views.ViewRenderException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
