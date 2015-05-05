@@ -18,9 +18,10 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-public class MustacheViewFixRenderer  implements ViewRenderer {
+public class MustacheViewFixRenderer implements ViewRenderer {
     private final LoadingCache<Class<? extends View>, MustacheFactory> factories;
 
     public MustacheViewFixRenderer() {
@@ -50,6 +51,16 @@ public class MustacheViewFixRenderer  implements ViewRenderer {
         } catch (ExecutionException | UncheckedExecutionException | MustacheException ignored) {
             throw new FileNotFoundException("Template " + view.getTemplateName() + " not found.");
         }
+    }
+
+    @Override
+    public void configure(final Map<String, String> map) {
+
+    }
+
+    @Override
+    public String getSuffix() {
+        return null;
     }
 }
 

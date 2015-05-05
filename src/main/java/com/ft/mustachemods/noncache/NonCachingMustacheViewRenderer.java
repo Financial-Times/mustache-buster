@@ -19,6 +19,7 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.nio.charset.Charset;
 import java.util.Locale;
+import java.util.Map;
 
 public class NonCachingMustacheViewRenderer implements ViewRenderer {
 
@@ -53,5 +54,14 @@ public class NonCachingMustacheViewRenderer implements ViewRenderer {
         } catch (Exception e) {
             throw new FileNotFoundException("Template " + view.getTemplateName() + " not found.");
         }
+    }
+
+    @Override
+    public void configure(final Map<String, String> map) {
+    }
+
+    @Override
+    public String getSuffix() {
+        return null;
     }
 }

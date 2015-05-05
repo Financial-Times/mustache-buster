@@ -12,12 +12,12 @@
 	</prerequisites>
 	<groupId>com.ft.ws.lib</groupId>
 	<artifactId>ft-mustache-buster</artifactId>
-	<version>2.0.0</version>
+	<version>3.0.0</version>
 	<name>FT moustache buster</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<dw.version>0.7.0-rc3</dw.version>
+		<dw.version>0.8.1</dw.version>
 	</properties>
 	<dependencies>
         <dependency>
